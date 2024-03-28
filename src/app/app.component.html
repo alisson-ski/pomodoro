@@ -1,0 +1,6 @@
+<div *ngIf="parsedMinutes$">
+
+  <span>{{parsedMinutes$ | async}}</span>
+  
+  <button (click)="startCount()">Começar</button>
+</div>
