@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&family=Zen+Antique&display=swap');
+
+:root {
+  --violet: #4D3DAE;
+  --black: #1E1B18;
+  --red: #BA1F33;
+  --green: #04724D;
+  --light-gray: #D1D1D1;
+  --gray: #969696;
+  --dark-gray: #454545;
+  --white: #FFFFFF;
+
+  --primary-font: "Urbanist", sans-serif;
+  --heading-font: "Zen Antique", serif;
+  
+  --sm: 576px;
+  --md: 768px;
+  --lg: 992px;
+  --xl: 1200px;
+  --xxl: 1400px;
+}
+
+.ski-dark {
+  --text-color: var(--white);
+  --body-background: var(--dark-gray);
+  --component-background: var(--black);
+
+  * {
+    color: var(--text-color);
+  }
+}
+
+.ski-light {
+  --text-color: var(--black);
+  --body-background: var(--light-gray);
+  --component-background: var(--dark-gray);
+
+  * {
+    color: var(--text-color);
+  }
+}
+
+@media (max-width: 1200px) {
+  html {
+    font-size: 93.75%;
+  }
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 87.5%;
+  }
+}
+
+body {
+  margin: 0;
+}
+
+* {
+  font-family: var(--primary-font);
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
