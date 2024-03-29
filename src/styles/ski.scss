@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&family=Zen+Antique&display=swap');
+@import './icons.scss';
 
 :root {
   --violet: #4D3DAE;
@@ -8,6 +9,7 @@
   --light-gray: #D1D1D1;
   --gray: #969696;
   --dark-gray: #454545;
+
   --white: #FFFFFF;
 
   --primary-font: "Urbanist", sans-serif;
@@ -60,6 +62,7 @@ body {
 
 * {
   font-family: var(--primary-font);
+  letter-spacing: 0.6px;
   padding: 0;
   margin: 0;
   box-sizing: border-box;

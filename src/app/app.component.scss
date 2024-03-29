@@ -4,9 +4,9 @@
 
   display: flex;
   justify-content: center;
-  align-items: flex-start;
 
-  padding-top: 3.5rem;
+  padding-top: 2rem;
+  padding-bottom: 1.5rem;
 
   main {
     width: 24rem;
@@ -16,11 +16,23 @@
 
     h1 {
       text-align: center;
-      margin-bottom: 5rem;
     }
 
     app-actions {
-      margin-bottom: 0.5rem;
+      margin-top: 3rem;
+    }
+    
+    app-timer {
+      margin-top: 0.5rem;
+    }
+
+    app-explanation {
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    app-credits {
+      margin-top: auto;
     }
   }
 }
