@@ -1,3 +1,8 @@
 <div class="actions-container">
-  <button *ngFor="let button of buttons">{{button.label}}</button>
+  <button *ngFor="let button of buttons"
+    [class.bg-red]="(pomodoroService.currentStep$ | async) === button.step"
+    (click)="setStep(button.step)"
+  >
+    {{button.label}}
+  </button>
 </div>

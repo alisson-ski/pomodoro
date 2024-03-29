@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Steps } from '../../services/pomodoro.service';
+import { PomodoroService, Steps } from '../../services/pomodoro.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -21,4 +21,10 @@ export class ActionsComponent {
     label: 'Pausa Longa ',
     step: Steps.LONG_BREAK
   }];
+
+  constructor(public pomodoroService: PomodoroService) { }
+
+  setStep(step: Steps) {
+    this.pomodoroService.setStep(step);
+  }
 }

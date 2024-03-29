@@ -1,4 +1,13 @@
 <div class="timer-container">
   <span>{{parsedMinutes$ | async}}</span>
-  <button class="bg-red">Começar</button>
+
+  <button *ngIf="!(pomodoroService.isTimerRunning$ | async)"
+    class="bg-red"
+    (click)="startTimer()"
+  >Começar</button>
+  
+  <button *ngIf="pomodoroService.isTimerRunning$ | async" 
+    class="bg-red"
+    (click)="stopTimer()"
+  >Pausar</button>
 </div>

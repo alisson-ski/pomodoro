@@ -18,6 +18,9 @@ export class PomodoroService {
   private _currentStep = new BehaviorSubject<Steps>(Steps.POMODORO);
   currentStep$ = this._currentStep.asObservable();
 
+  private _isTimerRunning = new BehaviorSubject<boolean>(false);
+  isTimerRunning$ = this._isTimerRunning.asObservable();
+
   pomodoroCount = 0;
   interval: NodeJS.Timeout | undefined = undefined;
 
@@ -33,20 +36,51 @@ export class PomodoroService {
     this.setStep(Steps.POMODORO);
     this.pomodoroCount = 0;
     clearInterval(this.interval);
+    this._isTimerRunning.next(false);
   }
 
-  startCount() {
-    this.interval = setInterval(() => {
-      const nextSecondsValue = this._seconds.value - 1;
-      this._seconds.next(nextSecondsValue);
+  startTimer() {
+    this._isTimerRunning.next(true);
+    this.lowerOneSecond();
 
-      if (nextSecondsValue === 0) {
+    this.interval = setInterval(() => {
+      this.lowerOneSecond();
+      if (this._seconds.value === 0) {
         clearInterval(this.interval);
+        this.onCountEnd();
       }
     }, 1000);
   }
 
+  lowerOneSecond() {
+    const nextSecondsValue = this._seconds.value - 1;
+    this._seconds.next(nextSecondsValue);
+  }
+
+  onCountEnd() {
+    if (this._currentStep.value !== Steps.POMODORO) {
+      this.setStep(Steps.POMODORO);
+      return;
+    }
+    
+    this.pomodoroCount++;
+
+    if (this.pomodoroCount === 4) {
+      this.setStep(Steps.LONG_BREAK);
+      this.pomodoroCount = 0;
+      return;
+    }
+
+    this.setStep(Steps.SHORT_BREAK);
+  }
+
+  stopTimer() {
+    this._isTimerRunning.next(false);
+    clearInterval(this.interval);
+  }
+
   setStep(step: Steps) {
+    this.stopTimer();
     this._seconds.next(this.stepTimes[step]);
     this._currentStep.next(step);
   }

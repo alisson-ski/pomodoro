@@ -27,7 +27,7 @@
   --body-background: var(--dark-gray);
   --component-background: var(--black);
 
-  * {
+  *:not(button) {
     color: var(--text-color);
   }
 }
@@ -37,7 +37,7 @@
   --body-background: var(--light-gray);
   --component-background: var(--dark-gray);
 
-  * {
+  *:not(button) {
     color: var(--text-color);
   }
 }
@@ -73,7 +73,9 @@ h1 {
 }
 
 button {
+  border-radius: var(--border-radius);
   background-color: var(--violet);
+  color: var(--white);
   letter-spacing: 1.2px;
   border: none;
   height: 2rem;

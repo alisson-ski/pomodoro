@@ -27,7 +27,11 @@ export class TimerComponent {
     })));
   }
 
-  startCount() {
-    this.pomodoroService.startCount();
+  startTimer() {
+    this.pomodoroService.startTimer();
+  }
+
+  stopTimer() {
+    this.pomodoroService.stopTimer();
   }
 }
