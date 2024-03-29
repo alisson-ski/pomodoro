@@ -1,0 +1,16 @@
+.timer-container {
+  background-color: var(--component-background);
+  border-radius: var(--border-radius);
+  height: 14rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  padding-bottom: 1rem;
+
+  span {
+    font-size: 5.5rem;
+  }
+}

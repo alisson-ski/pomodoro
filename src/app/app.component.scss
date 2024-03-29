@@ -1,0 +1,26 @@
+.app-container {
+  background-color: var(--body-background);
+  min-height: 100svh;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+  padding-top: 3.5rem;
+
+  main {
+    width: 24rem;
+
+    display: flex;
+    flex-direction: column;
+
+    h1 {
+      text-align: center;
+      margin-bottom: 5rem;
+    }
+
+    app-actions {
+      margin-bottom: 0.5rem;
+    }
+  }
+}

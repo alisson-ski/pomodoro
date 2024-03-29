@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, shareReplay } from 'rxjs';
 
-enum Steps {
+export enum Steps {
   POMODORO,
   SHORT_BREAK,
   LONG_BREAK
