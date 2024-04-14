@@ -5,6 +5,7 @@
   --violet: #4D3DAE;
   --black: #1E1B18;
   --red: #BA1F33;
+  --light-red: #ffa7a7;
   --green: #04724D;
   --light-gray: #D1D1D1;
   --gray: #969696;
@@ -28,6 +29,7 @@
   --text-color: var(--white);
   --body-background: var(--dark-gray);
   --component-background: var(--black);
+  --outline-color: var(--white);
 
   *:not(button) {
     color: var(--text-color);
@@ -38,6 +40,7 @@
   --text-color: var(--black);
   --body-background: var(--light-gray);
   --component-background: var(--dark-gray);
+  --outline-color: var(--black);
 
   *:not(button) {
     color: var(--text-color);
@@ -69,10 +72,13 @@ body {
 }
 
 h1 {
+  font-size: 2.5rem;
+  letter-spacing: 1px;
+}
+
+h1, h2, h3, h4, h5, h6 {
   font-family: var(--heading-font);
   font-weight: 500;
-  letter-spacing: 1px;
-  font-size: 2.5rem;
 }
 
 button {
@@ -84,7 +90,104 @@ button {
   height: 2rem;
   padding: 0 0.5rem;
   cursor: pointer;
+
+  &:focus-within {
+    outline: solid 1px var(--outline-color);
+  }
+
+  &[disabled] {
+    pointer-events: none;
+    opacity: 0.7;
+  }
+
+  &.icon-button {
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &.pure-icon-button {
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    padding: 0;
+
+    span {
+      width: 1.3rem;
+      height: 1.3rem;
+    }
+  }
 }
+
+.ski-dialog {
+  margin: auto;
+  border: none;
+  border-radius: var(--border-radius);
+  background-color: var(--component-background);
+
+  &::backdrop {
+    background: #5a5a5a7c;
+  }
+
+  .dialog-content {
+    padding: 1rem;
+  }
+}
+
+.ski-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  label {
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  input {
+    border: 1px solid var(--gray);
+    border-radius: var(--border-radius);
+    padding: 0.5rem;
+    color: var(--black);
+
+    &:focus-within {
+      outline: solid 1px var(--outline-color);
+    }
+
+    &.ng-invalid.ng-touched {
+      border: solid 1px var(--red);
+      background-color: var(--light-red);
+    }
+  }
+}
+
+.ski-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 2rem;
+  height: 2rem;
+
+  span, a {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  a {
+    border-radius: var(--border-radius);
+  }
+
+  a:focus-within {
+    outline: solid 1px var(--outline-color);
+  }
+}
+
 
 .bg-violet { background-color: var(--violet); }
 .bg-red { background-color: var(--red); }

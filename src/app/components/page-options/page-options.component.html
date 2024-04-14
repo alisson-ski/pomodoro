@@ -1,0 +1,33 @@
+<div class="options-container">
+  <button class="bg-gray pure-icon-button" (click)="openDialog()">
+    <span class="icon-cog"></span>
+  </button>
+</div>
+
+<dialog #dialog class="ski-dialog">
+  <div class="dialog-content">
+    <h3>Customizar Minutos</h3>
+
+    <form class="ski-form" [formGroup]="form">
+      <div class="ski-form-field">
+        <label for="pomodoro-time">Pomodoro</label>
+        <input type="number" id="pomodoro-time" formControlName="pomodoro">
+      </div>
+  
+      <div class="ski-form-field">
+        <label for="short-break-time">Pausa Curta</label>
+        <input type="number" id="short-break-time" formControlName="shortBreak">
+      </div>
+  
+      <div class="ski-form-field">
+        <label for="long-break-time">Pausa Longa</label>
+        <input type="number" id="long-break-time" formControlName="longBreak">
+      </div>
+    </form>
+
+    <div class="actions">
+      <button class="bg-gray" (click)="closeDialog()">Cancelar</button>
+      <button class="bg-purple" [disabled]="form.invalid" (click)="save()">Salvar</button>
+    </div>
+  </div>
+</dialog>
