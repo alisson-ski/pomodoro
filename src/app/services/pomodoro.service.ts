@@ -42,6 +42,8 @@ export class PomodoroService {
     [Steps.LONG_BREAK]: {title: 'Pausa longa finalizada', body: 'Hora de voltar ao trabalho!' },
   }
 
+  worker: Worker | undefined;
+
   constructor() {
     this.reset();
   }
@@ -53,6 +55,7 @@ export class PomodoroService {
 
     this.setStep(Steps.POMODORO);
     this.pomodoroCount = 0;
+    this.worker?.terminate();
     clearInterval(this.interval);
     this._isTimerRunning.next(false);
   }
@@ -97,9 +100,32 @@ export class PomodoroService {
     this._isTimerRunning.next(true);
     this.lowerOneSecond();
 
+    if (typeof Worker !== 'undefined') {
+      this.createWebWorker();
+    } else {
+      this.createInterval();
+    }
+  }
+
+  createWebWorker() {
+    this.worker = new Worker(new URL('../app.worker', import.meta.url));
+      this.worker.onmessage = ({ data }) => {
+        if (data !== 'tick') return;
+
+        this.lowerOneSecond();
+        if (this._seconds.value < 1) {
+          this.worker!.terminate();
+          this.onCountEnd();
+        }
+
+      };
+    this.worker.postMessage('start');
+  }
+
+  createInterval() {
     this.interval = setInterval(() => {
       this.lowerOneSecond();
-      if (this._seconds.value === 0) {
+      if (this._seconds.value < 1) {
         clearInterval(this.interval);
         this.onCountEnd();
       }
@@ -108,6 +134,7 @@ export class PomodoroService {
 
   stopTimer() {
     this._isTimerRunning.next(false);
+    this.worker?.terminate();
     clearInterval(this.interval);
   }
 
