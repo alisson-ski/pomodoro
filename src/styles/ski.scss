@@ -8,8 +8,8 @@
   --light-red: #ffa7a7;
   --green: #04724D;
   --light-gray: #D1D1D1;
-  --gray: #969696;
-  --dark-gray: #454545;
+  --gray: #454545;
+  --dark-gray: #2B2B2B;
 
   --white: #FFFFFF;
 
@@ -44,6 +44,10 @@
 
   *:not(button) {
     color: var(--text-color);
+  }
+
+  .bg-black, .ski-dialog {
+    --text-color: var(--white);
   }
 }
 
@@ -166,6 +170,13 @@ button {
   }
 }
 
+.ski-credits {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
 .ski-links {
   display: flex;
   align-items: center;
@@ -193,3 +204,4 @@ button {
 .bg-red { background-color: var(--red); }
 .bg-green { background-color: var(--green); }
 .bg-gray { background-color: var(--gray); }
+.bg-black { background-color: var(--black); }

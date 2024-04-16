@@ -43,6 +43,7 @@ export class PomodoroService {
   }
 
   worker: Worker | undefined;
+  bellAudio: HTMLAudioElement | null = null;
 
   constructor() {
     this.reset();
@@ -51,6 +52,8 @@ export class PomodoroService {
   reset() {
     if (typeof window !== 'undefined') {
       this.setupTimes();
+      this.playSilentAudio();
+      this.bellAudio = new Audio('../../assets/sounds/bell.mp3');
     }
 
     this.setStep(Steps.POMODORO);
@@ -58,6 +61,12 @@ export class PomodoroService {
     this.worker?.terminate();
     clearInterval(this.interval);
     this._isTimerRunning.next(false);
+  }
+
+  // Playing silent audio to allow the bell sound to play later, without the tab being focused
+  playSilentAudio() {
+    let audio = new Audio('../../assets/sounds/silence.mp3');
+    audio.play();
   }
 
   setupTimes() {
@@ -90,8 +99,7 @@ export class PomodoroService {
       body: this.timeEndedNotifications[step].body
     });
 
-    let audio = new Audio('../../assets/sounds/bell.mp3');
-    audio.play();
+    this.bellAudio?.play();
   }
 
   startTimer() {
